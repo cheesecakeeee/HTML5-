@@ -6,7 +6,7 @@
 
 	<style>
 	/*css reset start*/
-		body,html{height: 100%;overflow: hidden;}
+		body,html{height: 100%;/*overflow: hidden;*/}
 		body,html,h1,h2,h3,h4,h5,h6,ul,p,li{margin: 0;padding: 0;font-size: 14px;font-family: "微软雅黑"}
 		a{text-decoration: none;display: block;}
 		img{display: block;}
@@ -33,7 +33,9 @@
 	/*head css end*/
 
 	/*content css start*/
-		#content{background-color: #5B5B5B;height: 400px;}
+		#content{background-color: #5B5B5B;}
+		#content>.list li{position: relative;}
+		#content>.list>li div{width: 1100px;height: 520px;background-color: #D99E9E;position: absolute;top: 0;left: 0;right: 0;bottom: 0;margin: auto} 
 	/*content css end */
 
 
@@ -89,7 +91,23 @@
 			</div>
 		</header>
 		<section id="content">
-			
+			<ul class="list">
+				<li class="home">
+					<div >home</div>
+				</li>
+				<li class="works">
+					<div >works</div>
+				</li>
+				<li class="course">
+					<div >course</div>
+				</li>
+				<li class="about">
+					<div >about</div>
+				</li>
+				<li class="team">
+					<div >team</div>
+				</li>
+			</ul>
 		</section>
 	</section>
 
@@ -101,8 +119,16 @@
 		var firstLiNode = liNodes[0];
 		var firstUpNode = firstLiNode.querySelector(".up");
 
+		// 设置每屏大小
+		var head = document.querySelector("#head");
+		var content = document.querySelector("#content");
+		content.style.height = document.documentElement.clientHeight - head.offsetHeight+"px";
+		var cLi = document.querySelectorAll("#content .list li");
+		for(var i=0;i<cLi.length;i++){
+			cLi[i].style.height = document.documentElement.clientHeight - head.offsetHeight+"px";
+		}
 
-		
+		// 头部区域
 		headBind();
 		function headBind(){
 			firstUpNode.style.width = "100%";
@@ -110,15 +136,21 @@
 			for(var i=0;i<liNodes.length;i++){
 				liNodes[i].index = i;
 				liNodes[i].onclick = function(){
-
-					for(var i=0;i<liNodes.length;i++){	//移除所有的li的样式
-						upNodes[i].style.width = "";
-					}
-					upNodes[this.index].style.width = "100%";	//当前li的遮罩100%	
-					//三角形移动到当前li下面
-					arrowEl.style.left =  liNodes[this.index].offsetLeft + liNodes[this.index].offsetWidth/2 - arrowEl.offsetWidth/2 +"px";	
+					// 点击导航栏，导航栏样式变化，小三角移动,内容区滚动也会触发
+					move(this.index)
 				}
 			}
+		}
+	
+		// 移动导航栏效果
+		function move(index){
+			// 点击导航栏，导航栏样式变化，小三角移动,内容区滚动也会触发
+			for(var i=0;i<liNodes.length;i++){	//移除所有的li的样式
+				upNodes[i].style.width = "";
+			}
+			upNodes[index].style.width = "100%";	//当前li的遮罩100%	
+			//三角形移动到当前li下面
+			arrowEl.style.left =  liNodes[index].offsetLeft + liNodes[index].offsetWidth/2 - arrowEl.offsetWidth/2 +"px";	
 		}
 		
 
