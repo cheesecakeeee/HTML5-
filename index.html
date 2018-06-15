@@ -151,6 +151,41 @@
 				cLi[i].style.height = document.documentElement.clientHeight - head.offsetHeight+"px";
 			}
 		}
+
+		// 监听内容区的鼠标滚轮事件 
+		// 设置滚轮触发时间的定时器，防止滚轮过快
+		if(content.addEventListener){
+			content.addEventListener("DOMMouseScroll",fn);
+		}
+		content.onmousewheel = fn;
+		function fn(ev){
+			var ev = ev || event;
+			var dir = "";
+			if(ev.wheelDelta){
+				dir = ev.wheelDelta>0?"up":"down";
+			}
+			if(ev.detail){
+				dir = ev.detail>0?"down":"up";
+			}
+
+			switch(dir){
+				case "up":
+					if(now>0){
+						now--;
+						cList.style.top = -now * (document.documentElement.clientHeight - head.offsetHeight) + "px";
+						arrowEl.style.left =  liNodes[now].offsetLeft + liNodes[now].offsetWidth/2 - arrowEl.offsetWidth/2 +"px";
+					}
+					break;
+				case "down":
+					if(now<cLi.length-1){
+						now++;
+						cList.style.top = -now * (document.documentElement.clientHeight - head.offsetHeight) + "px";
+						arrowEl.style.left =  liNodes[now].offsetLeft + liNodes[now].offsetWidth/2 - arrowEl.offsetWidth/2 +"px";
+					}
+					break;
+			}
+		}
+
 		
 		// 头部区域
 		headBind();
