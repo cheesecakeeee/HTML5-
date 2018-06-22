@@ -9,13 +9,14 @@
 		body,html{height: 100%;/*overflow: hidden;*/}
 		body,html,h1,h2,h3,h4,h5,h6,ul,p,li{margin: 0;padding: 0;font-size: 14px;font-family: "微软雅黑"}
 		a{text-decoration: none;display: block;}
-		img{display: block;}
 		li{list-style: none;}
+		img{display: block;}
 	/*css reset end*/
 
 	/*common css start*/
 		.clearfix{*zoom:1;}
 		.clearfix:after{display: block;content: "";clear: both;}
+		.commonTitle{font-size: 80px;font-weight: bold;color:#8F8695;letter-spacing: -5px;line-height: 0.8;}
 	/*common css end*/
 		
 	/*head css start*/
@@ -33,16 +34,31 @@
 	/*head css end*/
 
 	/*content css start*/
-		#content{background-color: #ACAAAE;position: relative;overflow: hidden;width: 100%;}
+		#content{background-color: #AF94B6;position: relative;overflow: hidden;width: 100%;}
 		#content>.list{position: absolute;top: 0;left: 0;width: 100%;transition:1s top;}
 		#content>.list li{position: relative;background-position: 50% 50%!important;} /*背景居中*/
 		#content>.list .home{background: url(images/bg.jpg) no-repeat; }
-		#content>.list .works{background: url(images/bg.jpg) no-repeat; }
-		#content>.list .course{background: url(images/bg.jpg) no-repeat; }
-		#content>.list .about{background: url(images/bg.jpg) no-repeat; }
-		#content>.list .team{background: url(images/bg.jpg) no-repeat; }
 
-		#content>.list>li div{width: 1100px;height: 520px;background-color: #D99E9E;position: absolute;top: 0;left: 0;right: 0;bottom: 0;margin: auto} 
+			/*第三屏*/
+			#content>.list .works{background: url(images/bg.jpg) no-repeat; }
+			#content>.list .works .works1{margin: 50px 0 100px 50px}
+			#content>.list .works .list{margin-left: 50px;}
+			#content>.list .works .list>.item{float: left;height: 133px;width:220px;overflow: hidden;margin: 0 1px;position: relative;}
+			#content>.list .works .list>.item>img{width: 100%;transition:1s transform;}
+			#content>.list .works .list>.item:last-child{width: 322px;}
+			#content>.list .works .list>.item>.mask{position: absolute;top: 0;left: 0;right: 0;bottom: 0;background: #000;opacity: 0;box-sizing:border-box;padding: 10px;color: #fff;transition:1s opacity;}
+			#content>.list .works .list>.item>.mask .icon{width: 32px;height: 34px;background-color: #C37F7F;margin: 0 auto;background: url(images/icon1.png) no-repeat;transition:1s background-position;}
+			#content>.list .works .list>.item:hover .mask{opacity: 0.8}
+			#content>.list .works .list>.item>.mask .icon:hover{background-position: 0 -34px;}
+			#content>.list .works .list>.item:hover img{transform:rotate(30deg) scale(1.5);}
+			#content>.list .works .works3{width: 100px;height: 100px;background: url(images/works3.png) no-repeat;position: absolute;left: 900px;top: 240px;-webkit-background-size: contain;background-size: contain;}
+
+
+		#content>.list .course{background: url(images/bg.jpg) no-repeat;}
+		#content>.list .about{background: url(images/bg.jpg) no-repeat;}
+		#content>.list .team{background: url(images/bg.jpg) no-repeat;}
+
+		#content>.list>li section{width: 1100px;height: 520px;position: absolute;top: 0;left: 0;right: 0;bottom: 0;margin: auto} 
 	/*content css end */
 
 
@@ -70,14 +86,14 @@
 						</li>
 						<li>
 							<a href="javascript:;">
-								<div class="up">Works</div>
-								<div class="down">Works</div>
+								<div class="up">Course</div>
+								<div class="down">Course</div>
 							</a>
 						</li>
 						<li>
 							<a href="javascript:;">
-								<div class="up">Course</div>
-								<div class="down">Course</div>
+								<div class="up">Works</div>
+								<div class="down">Works</div>
 							</a>
 						</li>
 						<li>
@@ -100,19 +116,56 @@
 		<section id="content">
 			<ul class="list">
 				<li class="home">
-					<div >home</div>
-				</li>
-				<li class="works">
-					<div >works</div>
+					<section >home</section>
 				</li>
 				<li class="course">
-					<div >course</div>
+					<section >course</section>
+				</li>
+				<li class="works">
+					<section >
+						<div class="works1 commonTitle">
+							<span>Truelove</span><br>
+							<span>isvisiblenottotheeyes</span><br>
+							<span>buttotheheart.</span><br>	
+						</div>
+						<div class="list">
+							<div class="item">
+								<img src="images/worksimg1.jpeg" alt="">
+								<div class="mask">
+									<span>涂山雅雅</span>
+									<div class="icon"></div>
+								</div>
+							</div>
+							<div class="item">
+								<img src="images/worksimg2.jpeg" alt="">
+								<div class="mask">
+									<span>涂山雅雅</span>
+									<div class="icon"></div>
+								</div>
+							</div>
+							<div class="item">
+								<img src="images/worksimg3.jpeg" alt="">
+								<div class="mask">
+									<span>涂山雅雅</span>
+									<div class="icon"></div>
+								</div>
+							</div>
+							<div class="item">
+								<img src="images/worksimg4.jpeg" alt="">
+								<div class="mask">
+									<span>涂山雅雅</span>
+									<div class="icon"></div>
+								</div>
+							</div>
+						</div>
+						<div class="works3"></div>
+					</section>
 				</li>
 				<li class="about">
-					<div >about</div>
+					<section >about</section>
 				</li>
 				<li class="team">
-					<div >team</div>
+					<section >team</section>
 				</li>
 			</ul>
 		</section>
@@ -143,6 +196,9 @@
 		var cLi = document.querySelectorAll("#content .list li");
 		// content 下的ul
 		var cList = document.querySelector("#content .list");
+
+		// 定时器
+		var timer = null;
 		// 内容区域
 		contentBind();
 		function contentBind(){
@@ -155,15 +211,30 @@
 		// 监听内容区的鼠标滚轮事件 
 		// 设置滚轮触发时间的定时器，防止滚轮过快
 		if(content.addEventListener){
-			content.addEventListener("DOMMouseScroll",fn);
+			// 火狐
+			content.addEventListener("DOMMouseScroll",function(ev){
+				clearTimeout(timer);
+				ev = ev || event;
+				timer = setTimeout(function(){
+					fn(ev)
+				},200)
+			});
 		}
-		content.onmousewheel = fn;
+		// 非火狐
+		content.onmousewheel = function(ev){
+			clearTimeout(timer);
+			ev = ev || event;
+				timer = setTimeout(function(){
+					fn(ev)
+			},200)
+		};
 		function fn(ev){
-			var ev = ev || event;
 			var dir = "";
+			// 非火狐
 			if(ev.wheelDelta){
 				dir = ev.wheelDelta>0?"up":"down";
 			}
+			// 火狐
 			if(ev.detail){
 				dir = ev.detail>0?"down":"up";
 			}
@@ -202,7 +273,7 @@
 				}
 			}
 		}
-	
+		move(2)
 		// 移动导航栏效果
 		function move(index){
 			// 点击导航栏，导航栏样式变化，小三角移动,内容区滚动也会触发
