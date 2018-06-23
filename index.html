@@ -45,13 +45,29 @@
 			#content>.list .works .list{margin-left: 50px;}
 			#content>.list .works .list>.item{float: left;height: 133px;width:220px;overflow: hidden;margin: 0 1px;position: relative;}
 			#content>.list .works .list>.item>img{width: 100%;transition:1s transform;}
-			#content>.list .works .list>.item:last-child{width: 322px;}
+			#content>.list .works .list>.item:last-child{width: 332px;}
 			#content>.list .works .list>.item>.mask{position: absolute;top: 0;left: 0;right: 0;bottom: 0;background: #000;opacity: 0;box-sizing:border-box;padding: 10px;color: #fff;transition:1s opacity;}
-			#content>.list .works .list>.item>.mask .icon{width: 32px;height: 34px;background-color: #C37F7F;margin: 0 auto;background: url(images/icon1.png) no-repeat;transition:1s background-position;}
+			#content>.list .works .list>.item>.mask .icon{width: 32px;height: 34px;background-color: #C37F7F;margin: 0 auto;background: url(images/icon1.png) no-repeat;margin-top: 10px;transition:1s background-position;}
 			#content>.list .works .list>.item:hover .mask{opacity: 0.8}
 			#content>.list .works .list>.item>.mask .icon:hover{background-position: 0 -34px;}
 			#content>.list .works .list>.item:hover img{transform:rotate(30deg) scale(1.5);}
-			#content>.list .works .works3{width: 100px;height: 100px;background: url(images/works3.png) no-repeat;position: absolute;left: 900px;top: 240px;-webkit-background-size: contain;background-size: contain;}
+			#content>.list .works .works3{width: 100px;height: 100px;background: url(images/works3.png) no-repeat;position: absolute;left: 900px;top: 240px;-webkit-background-size: contain;background-size: contain;
+				animation:works3Move 4s linear infinite}
+
+			@keyframes works3Move{
+				0%{
+					transform:translateX(0px) rotateY(0deg);
+				}
+				49%{
+					transform:translateX(-390px) rotateY(0deg);
+				}
+				50%{
+					transform:translateX(-400px) rotateY(180deg);
+				}
+				100%{
+					transform:translateX(0px) rotateY(180deg);
+				}
+			}
 
 
 		#content>.list .course{background: url(images/bg.jpg) no-repeat;}
@@ -243,15 +259,13 @@
 				case "up":
 					if(now>0){
 						now--;
-						cList.style.top = -now * (document.documentElement.clientHeight - head.offsetHeight) + "px";
-						arrowEl.style.left =  liNodes[now].offsetLeft + liNodes[now].offsetWidth/2 - arrowEl.offsetWidth/2 +"px";
+						move(now);
 					}
 					break;
 				case "down":
 					if(now<cLi.length-1){
 						now++;
-						cList.style.top = -now * (document.documentElement.clientHeight - head.offsetHeight) + "px";
-						arrowEl.style.left =  liNodes[now].offsetLeft + liNodes[now].offsetWidth/2 - arrowEl.offsetWidth/2 +"px";
+						move(now);
 					}
 					break;
 			}
