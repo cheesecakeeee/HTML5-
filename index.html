@@ -37,7 +37,7 @@
 		#content{background-color: #AF94B6;position: relative;overflow: hidden;width: 100%;}
 		#content>.list{position: absolute;top: 0;left: 0;width: 100%;transition:1s top;}
 		#content>.list>li{position: relative;background-position: 50% 50%!important;} /*背景居中*/
-		#content>.list>li>section{width: 1100px;height: 520px;position: absolute;top: 0;left: 0;right: 0;bottom: 0;margin: auto} 
+		#content>.list>li>section{width: 1100px;height: 520px;position: absolute;top: 0;left: 0;right: 0;bottom: 0;margin: auto;} 
 
 
 			/*第三屏*/
@@ -71,7 +71,8 @@
 			}
 
 			
-			#content>.list>.course{background: url(images/bg.jpg) no-repeat;}
+			#content>.list>.course{background: url(images/bg.jpg) no-repeat;-webkit-background-size: cover;
+		background-size: cover;}
 			/*第二屏*/
 			#content>.list>.course .course1{margin: 50px;}
 			#content>.list>.course .course2{margin-left: 50px;width: 400px;}
@@ -94,27 +95,60 @@
 			#content>.list>.course .course3 .item:hover .faceBack{transform:rotateY(180deg)}
 
 			/*第一屏开始*/
-			#content>.list>.home{background: url(images/bg.jpg) no-repeat; }
-			#content>.list>.home .home1{width: 100%;height: 100%;background-color: #EC9292;}
-			#content>.list>.home .home1>li{position: absolute;top: 0;left: 0;bottom: 0;right: 0;}
+			#content>.list>.home{background: url(images/bg.jpg) no-repeat; -webkit-background-size: cover;
+		background-size: cover;}
+			#content>.list>.home .home1{width: 100%;height: 100%;perspective: 1000px;transform-style: preserve-3d;}
+			#content>.list>.home .home1>li{position: absolute;top: 0;left: 0;bottom: 0;right: 0;visibility: hidden;}
 			#content>.list>.home .home1>li:nth-child(1){background-color: #C09DC0}
 			#content>.list>.home .home1>li:nth-child(2){background-color: #9BC7DF}
 			#content>.list>.home .home1>li:nth-child(3){background-color: #9DC0AD}
 			#content>.list>.home .home1>li:nth-child(4){background-color: #D8B472}
-			#content>.list>.home .home1>li>.item{color: #fff;text-align: center;line-height: 520px;}
-			#content>.list>.home .home2>li{width: 20px;height: 20px;background: rgba(255,255,255,.5);;opacity: .8;border-radius: 50%;display: inline-block;box-shadow: 0 0 4px #000}
+			#content>.list>.home .home1>li>.item{color: #fff;text-align: center;margin-top: 200px;}
+			#content>.list>.home .home1>li.active{visibility: visible;}
+			#content>.list>.home .home1>li.leftHide{visibility: hidden;animation:3s leftHide infinite linear;}
+			#content>.list>.home .home1>li.rightShow{visibility: visible;animation:3s rightShow infinite linear;}
+			#content>.list>.home .home1>li.leftShow{visibility: visible;animation:3s leftShow infinite linear;}
+			#content>.list>.home .home1>li.rightHide{visibility: hidden;animation:3s rightHide infinite linear;}
+
+			/*从左到右，左边隐藏，右边显示*/
+			@keyframes leftHide{
+				0%   {visibility: visible;}
+				50%  {transform:translateX(-40%) rotateY(30deg) scale(.8)}
+				100% {transform:translateZ(-200px);}	
+			}
+			@keyframes rightShow{
+				0%   {visibility: hidden;transform:translateZ(-200px);}
+				50%   {transform:translateX(40%) rotateY(-30deg) scale(.8);}
+				100% {}	
+			}
+
+			/*从右到左，左边显示，右边隐藏*/
+			@keyframes leftShow{
+				0%   {visibility: hidden;transform:translateZ(-200px);}
+				50%   {transform:translateX(-40%) rotateY(30deg) scale(.8)}
+				100% {}	
+			}
+			@keyframes rightHide{
+				0%   {visibility: visible;}
+				50%  {transform:translateX(40%) rotateY(-30deg) scale(.8);}
+				100% {transform:translateZ(-200px);}	
+			}
+
+
 			/*记住这个居中的套路，外部盒子定位撑开100%，利用文本居中属性*/
 			#content>.list>.home .home2{position: absolute;left: 0;right: 0;text-align: center;bottom: 0;}
-
-
+			#content>.list>.home .home2>li{width: 20px;height: 20px;background: rgba(255,255,255,.5);border-radius: 50%;display: inline-block;box-shadow: 0 0 4px #000;}
+			
 			
 
 			/*第一屏结束*/
 
 			
 
-		#content>.list .about{background: url(images/bg.jpg) no-repeat;}
-		#content>.list .team{background: url(images/bg.jpg) no-repeat;}
+		#content>.list .about{background: url(images/bg.jpg) no-repeat;-webkit-background-size: cover;
+		background-size: cover;}
+		#content>.list .team{background: url(images/bg.jpg) no-repeat;-webkit-background-size: cover;
+		background-size: cover;}
 
 		
 	/*content css end */
@@ -176,17 +210,17 @@
 				<li class="home">
 					<section >
 						<ul class="home1">
-							<li>
-								<div class="item commonTitle">one layer</div>
+							<li class="commonTitle active leftShow">
+								<div class="item ">one layer</div>
 							</li>
-							<li>
-								<div class="item commonTitle">two layer</div>
+							<li class="commonTitle rightHide">
+								<div class="item ">two layer</div>
 							</li>
-							<li>
-								<div class="item commonTitle">three layer</div>
+							<li class="commonTitle">
+								<div class="item ">three layer</div>
 							</li>
-							<li>
-								<div class="item commonTitle">four layer</div>
+							<li class="commonTitle">
+								<div class="item ">four layer</div>
 							</li>
 						</ul>
 						<ul class="home2">
