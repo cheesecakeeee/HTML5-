@@ -17,7 +17,7 @@
 		.clearfix{*zoom:1;}
 		.clearfix:after{display: block;content: "";clear: both;}
 		.commonTitle{font-size: 80px;font-weight: bold;color:#8F8695;letter-spacing: -5px;line-height: 0.8;}
-		.commonText{font-style: 15px;line-height: 1.5;color: #877493}
+		.commonText{font-style: 15px;line-height: 1.5;color: #fff}
 	/*common css end*/
 		
 	/*head css start*/
@@ -135,7 +135,7 @@
 			}
 
 
-			/*记住这个居中的套路，外部盒子定位撑开100%，利用文本居中属性*/
+			/*记住这个居中的套路，外部盒子定位撑开100%，子项必须是inline-block利用文本居中属性*/
 			#content>.list>.home .home2{position: absolute;left: 0;right: 0;text-align: center;bottom: 0;}
 			#content>.list>.home .home2>li{width: 20px;height: 20px;background: rgba(255,255,255,.5);border-radius: 50%;display: inline-block;box-shadow: 0 0 4px #000;cursor:pointer;}
 			#content>.list>.home .home2>li.active{background-color: #fff;cursor: default;}
@@ -145,9 +145,19 @@
 			/*第一屏结束*/
 
 			
-
+		/*第四屏开始*/
 		#content>.list .about{background: url(images/bg.jpg) no-repeat;-webkit-background-size: cover;
 		background-size: cover;}
+		#content>.list .about .about1{margin: 50px 0 100px 50px;}
+		#content>.list .about .about2{margin-left: 50px;width: 400px;}
+		#content>.list .about .about4{width: 357px;height: 998px;background: url(images/aboutline.png) no-repeat; position: absolute;left: 50%;top:-100px;}
+		#content>.list .about .about3 .item{width: 260px;height: 200px;border: 5px solid rgba(255,255,255,0.5);border-radius: 8px;position: absolute;z-index: 2}
+		#content>.list .about .about3 .item:nth-child(1){left: 750px;top: 50px;}
+		#content>.list .about .about3 .item:nth-child(2){left: 600px;top: 290px;}
+
+
+
+		/*第四屏结束*/
 		#content>.list .team{background: url(images/bg.jpg) no-repeat;-webkit-background-size: cover;
 		background-size: cover;}
 
@@ -347,7 +357,33 @@
 					</section>
 				</li>
 				<li class="about">
-					<section >about</section>
+					<section >
+						<header class="about1 commonTitle">
+							<span>formatter</span><br>
+							<span>horizontal</span><br>
+							<span>orient</span><br>
+						</header>
+						<div class="about2 commonText">
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+							consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+							cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+							proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+						</div>
+						<div class="about3">
+							<div class="item">
+								<span></span>
+								<ul data-src=""></ul>
+							</div>
+							<div class="item">
+								<span></span>
+								<ul data-src=""></ul>
+							</div>
+						</div>
+						<div class="about4"></div>
+
+					</section>
 				</li>
 				<li class="team">
 					<section >team</section>
@@ -554,7 +590,7 @@
 			}
 		}
 
-		move(0)
+		move(3)
 	// 移动导航栏效果
 		function move(index){
 			// 点击导航栏，导航栏样式变化，小三角移动,内容区滚动也会触发
