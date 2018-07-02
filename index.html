@@ -165,12 +165,17 @@
 		background-size: cover;transition:.5s top,.5s left;}
 
 		/*第四屏结束*/
+
+		/*第五屏开始*/
 		#content>.list .team{background: url(images/bg.jpg) no-repeat;-webkit-background-size: cover;
 		background-size: cover;}
-
+		#content>.list .team .team1{width: 400px;margin: 50px;float: left;}
+		#content>.list .team .team2{width: 400px;margin: 50px;float: right;}
+			
+		/*第五屏结束*/
 		
-	/*content css end */
 
+	/*content css end */
 
 
 	</style>
@@ -393,7 +398,22 @@
 					</section>
 				</li>
 				<li class="team">
-					<section >team</section>
+					<section >
+						<header class="team1 commonTitle">
+							<span>legend</span><br>
+							<span>preprocessor</span><br>
+							<span>radial</span><br>
+						</header>
+						<div class="team2">
+							<p class="commonText">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, quis, autem. Quis, facere doloribus impedit quisquam labore cumque laudantium, eos itaque delectus, obcaecati iusto nostrum. Quo sed eum commodi repellat.</p>
+							<p class="commonText">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, quis, autem. Quis, facere doloribus impedit quisquam labore cumque laudantium, eos itaque delectus, obcaecati iusto nostrum. Quo sed eum commodi repellat.</p>
+						</div>
+						<div class="team3">
+							<ul>
+								<li></li>
+							</ul>
+						</div>
+					</section>
 				</li>
 			</ul>
 		</section>
@@ -655,7 +675,7 @@
 			}
 		}
 
-		move(3)
+		move(4)
 	// 移动导航栏效果
 		function move(index){
 			// 点击导航栏，导航栏样式变化，小三角移动,内容区滚动也会触发
