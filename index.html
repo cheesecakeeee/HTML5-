@@ -171,20 +171,25 @@
 		background-size: cover;}
 		#content>.list .team .team1{width: 400px;margin: 50px;float: left;}
 		#content>.list .team .team2{width: 400px;margin: 50px;float: right;}
-		#content>.list .team .team3{width: 944px;height: 448px;background-color: #985EA1;position: absolute;left: 50%;margin-left: -472px;}
+		#content>.list .team .team3{width: 944px;height: 448px;position: absolute;left: 50%;margin-left: -472px;bottom: -200px;}
 		#content>.list .team .team3 ul{height: 100%;}
-		#content>.list .team .team3 li{width: 118px;height: 100%;background: url(images/team3.jpeg) no-repeat;float: left;}
+		/*每个li都是同一张大的图片，通过调整偏移量让整张图片拼接出来*/
+		#content>.list .team .team3 li{width: 118px;height: 100%;background: url(images/team3.png) no-repeat;float: left;}
 		#content>.list .team .team3 li:nth-child(1){background-position: 0 0;}
 		#content>.list .team .team3 li:nth-child(2){background-position: -118px 0;}
 		#content>.list .team .team3 li:nth-child(3){background-position: -236px 0;}
 		#content>.list .team .team3 li:nth-child(4){background-position: -354px 0;}
 		#content>.list .team .team3 li:nth-child(5){background-position: -472px 0;}
 		#content>.list .team .team3 li:nth-child(6){background-position: -590px 0;}
-		#content>.list .team .team3 li:nth-child(7){background-position: -608px 0;}
-		#content>.list .team .team3 li:nth-child(8){background-position: -726px 0;}
+		#content>.list .team .team3 li:nth-child(7){background-position: -708px 0;}
+		#content>.list .team .team3 li:nth-child(8){background-position: -826px 0;}
 
 		/*第五屏结束*/
 		
+		/*小圆点开始*/
+		#content>.dot{position: fixed;right: 10px;top: 50%;}
+		#content>.dot>li{width: 10px;height: 10px;border: 2px solid #fff;margin-top: 10px;border-radius:50%; cursor: pointer;}
+		#content>.dot>li.active{background-color: #B7A3F5;cursor: default;}
 
 	/*content css end */
 
@@ -434,6 +439,13 @@
 					</section>
 				</li>
 			</ul>
+			<ul class="dot">
+				<li class="active"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
 		</section>
 	</section>
 
@@ -458,6 +470,9 @@
 
 	// 第四屏的图片炸裂效果
 		var about3UlNodes = document.querySelectorAll("#content>.list .about .about3 .item > ul");
+
+		var dotLis = document.querySelectorAll("#content>.dot>li");
+
 
 		
 
@@ -691,9 +706,18 @@
 					now = this.index;
 				}
 			}
+			// 遍历所有的小圆点
+			for(var i=0;i<dotLis.length;i++){
+				dotLis[i].index = i;
+				dotLis[i].onclick = function(){
+					// 点击导航栏，导航栏样式变化，小三角移动,内容区滚动也会触发
+					move(this.index);
+					// 将this.index的绑定到全局作用域下
+					now = this.index;
+				}
+			}
 		}
 
-		move(4)
 	// 移动导航栏效果
 		function move(index){
 			// 点击导航栏，导航栏样式变化，小三角移动,内容区滚动也会触发
@@ -706,6 +730,11 @@
 
 			// 点击滚屏
 			cList.style.top = -index * (document.documentElement.clientHeight - head.offsetHeight) + "px";
+			// 遍历所有的小圆点，移除active，当前小圆点加active
+			for(var i=0;i<dotLis.length;i++){	//移除所有小圆点的active样式
+				dotLis[i].className = "";
+			}
+			dotLis[index].className ="active";	//当前小圆点active
 		}
 		
 		
