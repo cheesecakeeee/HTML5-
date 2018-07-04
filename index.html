@@ -172,9 +172,9 @@
 		#content>.list .team .team1{width: 400px;margin: 50px;float: left;}
 		#content>.list .team .team2{width: 400px;margin: 50px;float: right;}
 		#content>.list .team .team3{width: 944px;height: 448px;position: absolute;left: 50%;margin-left: -472px;bottom: -200px;}
-		#content>.list .team .team3 ul{height: 100%;}
+		#content>.list .team .team3 ul{height: 100%;position: relative;}
 		/*每个li都是同一张大的图片，通过调整偏移量让整张图片拼接出来*/
-		#content>.list .team .team3 li{width: 118px;height: 100%;background: url(images/team3.png) no-repeat;float: left;}
+		#content>.list .team .team3 li{width: 118px;height: 100%;background: url(images/team3.png) no-repeat;float: left;transition:1s opacity;}
 		#content>.list .team .team3 li:nth-child(1){background-position: 0 0;}
 		#content>.list .team .team3 li:nth-child(2){background-position: -118px 0;}
 		#content>.list .team .team3 li:nth-child(3){background-position: -236px 0;}
@@ -183,6 +183,7 @@
 		#content>.list .team .team3 li:nth-child(6){background-position: -590px 0;}
 		#content>.list .team .team3 li:nth-child(7){background-position: -708px 0;}
 		#content>.list .team .team3 li:nth-child(8){background-position: -826px 0;}
+		#content>.list .team  canvas{position: absolute;top: 0px;}
 
 		/*第五屏结束*/
 		
@@ -468,14 +469,130 @@
 		var timer3D = null;
 
 
-	// 第四屏的图片炸裂效果
-		var about3UlNodes = document.querySelectorAll("#content>.list .about .about3 .item > ul");
+	// 第五屏气泡效果
+		var team3 = document.querySelector("#content>.list .team .team3");
+		var team3Ul = document.querySelector("#content>.list .team .team3 ul");
+		var team3Lis = document.querySelectorAll("#content>.list .team .team3 ul>li");
 
-		var dotLis = document.querySelectorAll("#content>.dot>li");
+		bubble()
+		
+		function bubble(){
+			var oc = null;
+			var timer1 = null;
+			var timer2 = null;
+			for(var i=0;i<team3Lis.length;i++){
+				team3Lis[i].onmouseenter = function(){
+					for(var i=0;i<team3Lis.length;i++){
+						team3Lis[i].style.opacity = .5;
+					}
+				this.style.opacity = 1;
+				addCanvas();
+				oc.style.top = this.offsetTop+"px";
+				oc.style.left = this.offsetLeft+"px";
+				}
 
+				
+			}
 
+			// 添加canvas画布
+			function addCanvas(){
+				if(!oc){
+					oc = document.createElement("canvas");	//注意这里的oc不要写var
+					oc.width = team3Lis[0].offsetWidth;
+					oc.height =  team3Lis[0].offsetHeight;
+					// oc.style.background = "#DE9090"	;
+					team3.appendChild(oc);
+					// 移出鼠标的样式都是绑定在canvas上的,canvas和li在一起
+					oc.onmouseleave = function(){
+						for(var i=0;i<team3Lis.length;i++){
+							team3Lis[i].style.opacity = 1
+						}
+						removeCanvas();
+					}
+					showBubble();
+				}
+			}
+
+			function removeCanvas(){
+				oc.remove(); //移除dom结构
+				oc = null;	//将值置空
+
+			}
+
+			function showBubble(){
+				if(oc.getContext){
+					var ctx = oc.getContext("2d");
+
+					//存放样式数组
+					var arr=[];
+
+					// 绘制
+					timer1= setInterval(function(){
+						console.log(arr);
+						ctx.clearRect(0,0,oc.width,oc.height);
+						// 动画效果多个
+						for(var i=0;i<arr.length;i++){
+							arr[i].deg+=10;
+				         	arr[i].x = arr[i].startX+Math.sin(arr[i].deg*Math.PI/180)*arr[i].step*2;
+			         		arr[i].y = arr[i].startY-(arr[i].deg*Math.PI/180)*arr[i].step;
+
+			         		if(arr[i].y <10){
+			         			arr.splice(i,1);
+			         		}
+						}
+						// 绘制多个
+						for(var i=0;i<arr.length;i++){
+							ctx.save();
+							ctx.fillStyle="rgba("+arr[i].red+","+arr[i].green+","+arr[i].blue+","+arr[i].alpha+")";
+							ctx.beginPath();
+							ctx.arc(arr[i].x,arr[i].y,arr[i].r,0,2*Math.PI);
+							ctx.fill();
+							ctx.restore();
+						}
+					},1000/60)
+
+						// 设置样式
+					timer2 =setInterval(function(){
+							var r = Math.random()*6 + 2;
+							var x = Math.random()*oc.width;
+							var y = oc.height-r;
+							var red = Math.round(Math.random()*255);
+							var green = Math.round(Math.random()*255);
+							var blue = Math.round(Math.random()*255);
+							var alpha = 1;
+							var deg = 0;	//角度
+							var startX = x;	//起始坐标
+							var startY = y;
+							var step =  Math.random()*20 +10;	//放大的步长
+							arr.push({
+								x:x,
+								y:y,
+								r:r,
+								red:red,
+								green:green,
+								blue:blue,
+								alpha:alpha,
+								deg:deg,
+								startX:startX,
+								startY:startY,
+								step:step
+							});
+					},50)
+				}
+			}
+
+			// team3Ul.onmouseleave = function(){
+			// 	for(var i=0;i<team3Lis.length;i++){
+			// 			team3Lis[i].style.opacity = 1;
+			// 	}
+			// }
+		}
 		
 
+
+	// 第四屏的图片炸裂效果
+		var about3UlNodes = document.querySelectorAll("#content>.list .about .about3 .item > ul");
+		var dotLis = document.querySelectorAll("#content>.dot>li");
 		imgBoom()
 		function imgBoom(){
 			for(var i=0;i<about3UlNodes.length;i++){
@@ -717,6 +834,7 @@
 				}
 			}
 		}
+		move(4);
 
 	// 移动导航栏效果
 		function move(index){
