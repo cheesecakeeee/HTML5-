@@ -42,8 +42,8 @@
 
 			/*第三屏*/
 			#content>.list>.works{background: url(images/bg.jpg) no-repeat; }
-			#content>.list>.works .works1{margin: 50px 0 100px 50px}
-			#content>.list>.works .list{margin-left: 50px;}
+			#content>.list>.works .works1{margin: 50px 0 100px 50px;position: relative;z-index: 2}
+			#content>.list>.works .list{margin-left: 50px;position: relative;z-index: 2}
 			#content>.list>.works .list>.item{float: left;height: 133px;width:220px;overflow: hidden;margin: 0 1px;position: relative;}
 			#content>.list>.works .list>.item>img{width: 100%;transition:1s transform;}
 			#content>.list>.works .list>.item:last-child{width: 332px;}
@@ -52,7 +52,7 @@
 			#content>.list>.works .list>.item:hover .mask{opacity: 0.8}
 			#content>.list>.works .list>.item>.mask .icon:hover{background-position: 0 -34px;}
 			#content>.list>.works .list>.item:hover img{transform:rotate(30deg) scale(1.5);}
-			#content>.list>.works .works3{width: 100px;height: 100px;background: url(images/works3.png) no-repeat;position: absolute;left: 900px;top: 240px;-webkit-background-size: contain;background-size: contain;
+			#content>.list>.works .works3{width: 100px;height: 100px;background: url(images/works3.png) no-repeat;position: absolute;left: 900px;top: 240px;-webkit-background-size: contain;background-size: contain;z-index: 2;
 				animation:works3Move 4s linear infinite}
 
 			@keyframes works3Move{
@@ -151,7 +151,7 @@
 		#content>.list .about .about1{margin: 50px 0 100px 50px;}
 		#content>.list .about .about2{margin-left: 50px;width: 400px;}
 		#content>.list .about .about4{width: 357px;height: 998px;background: url(images/aboutline.png) no-repeat; position: absolute;left: 50%;top:-100px;}
-		#content>.list .about .about3 .item{width: 260px;height: 200px;border: 5px solid rgba(255,255,255,0.5);border-radius: 8px;position: absolute;z-index: 2;overflow: hidden;}
+		#content>.list .about .about3 .item{width: 260px;height: 200px;border: 5px solid rgba(255,255,255,0.5);border-radius: 8px;position: absolute;z-index: 2;overflow: hidden;transition:1s transform;}
 		#content>.list .about .about3 .item:nth-child(1){left: 750px;top: 50px;}
 		#content>.list .about .about3 .item:nth-child(2){left: 600px;top: 290px;}
 		#content>.list .about .about3 .item>span,#content>.list .about .about3 .item>ul{position: absolute;top: 0;left: 0;right: 0;bottom: 0;}
@@ -169,8 +169,8 @@
 		/*第五屏开始*/
 		#content>.list .team{background: url(images/bg.jpg) no-repeat;-webkit-background-size: cover;
 		background-size: cover;}
-		#content>.list .team .team1{width: 400px;margin: 50px;float: left;}
-		#content>.list .team .team2{width: 400px;margin: 50px;float: right;}
+		#content>.list .team .team1{width: 400px;margin: 50px;float: left;transition:1s transform;}
+		#content>.list .team .team2{width: 400px;margin: 50px;float: right;transition:1s transform;}
 		#content>.list .team .team3{width: 944px;height: 448px;position: absolute;left: 50%;margin-left: -472px;bottom: -200px;}
 		#content>.list .team .team3 ul{height: 100%;position: relative;}
 		/*每个li都是同一张大的图片，通过调整偏移量让整张图片拼接出来*/
@@ -191,12 +191,18 @@
 		/*出入场开始*/
 		#content>.list>.home .home2{transition:1s transform,1s opacity;}
 		#content>.list>.home .home1{transition:1s transform,1s opacity;}
-		#content>.list>.course .bf2{background: url(images/bf1.png) no-repeat; position: absolute;top: 100px;left: 0;width: 150px;height: 150px;-webkit-background-size: contain;
+		#content>.list>.course .bf2{background: url(images/bf1.png) no-repeat; position: absolute;top: -30px;left: 0;width: 150px;height: 150px;-webkit-background-size: contain;
 		background-size: contain;transition:2s transform,1s opacity;}
 		#content>.list>.course .bf3{background: url(images/bf3.png) no-repeat; position: absolute;bottom: 0;left: 0;width: 200px;height: 200px;-webkit-background-size: contain;
 		background-size: contain;transition:2s transform,1s opacity;}
-		#content>.list>.course .bf1{background: url(images/bf2.png) no-repeat; position: absolute;top: 0;left: 50%;width: 100px;height: 100px;-webkit-background-size: contain;
+		#content>.list>.course .bf1{background: url(images/bf2.png) no-repeat; position: absolute;top: -30px;left: 50%;width: 100px;height: 100px;-webkit-background-size: contain;
 		background-size: contain;transition:2s transform,1s opacity;}
+		#content>.list>.works .sugar1{position: absolute;top: 0;left: 70%;width: 100px;height: 100px;background: url(images/sugar1.png) no-repeat;-webkit-background-size: contain;
+		background-size: contain;transition:1s transform;}
+		#content>.list>.works .sugar2{position: absolute;top: 100px;left: 30%;width: 150px;height: 150px;background: url(images/sugar.png) no-repeat;-webkit-background-size: contain;
+		background-size: contain;transition:1s transform;}
+		#content>.list>.works .sugar3{position: absolute;top: 500px;left: 50%;width: 200px;height: 200px;background: url(images/sugar3.png) no-repeat;-webkit-background-size: contain;
+		background-size: contain;transition:1s transform;}
 
 		/*出入场结束*/
 
@@ -400,6 +406,9 @@
 							</div>
 						</div>
 						<div class="works3"></div>
+						<div class="sugar1"></div>
+						<div class="sugar2"></div>
+						<div class="sugar3"></div>
 					</section>
 				</li>
 				<li class="about">
@@ -511,7 +520,7 @@
 				var bf2 = document.querySelector("#content>.list>.course .bf2")
 				var bf3 = document.querySelector("#content>.list>.course .bf3")
 				bf1.style.transform = "translate(0px,-30px)"
-				bf2.style.transform = "translate(50%,-100px)"
+				bf2.style.transform = "translate(50%,-30px)"
 				bf3.style.transform = "translate(0px,0px)"
 				bf1.style.opacity = 1;
 				bf2.style.opacity = 1;
@@ -531,22 +540,60 @@
 			}
 		},
 		{
-			inAni:function(){},
-			outAni:function(){}
+			inAni:function(){
+				var sugar1 = document.querySelector("#content>.list>.works .sugar1")
+				var sugar2 = document.querySelector("#content>.list>.works .sugar2")
+				var sugar3 = document.querySelector("#content>.list>.works .sugar3");
+				sugar1.style.transform = "translateY(0px)";
+				sugar2.style.transform = "translateY(100px)";
+				sugar3.style.transform = "translateY(0px)";
+
+			},
+			outAni:function(){
+				var sugar1 = document.querySelector("#content>.list>.works .sugar1")
+				var sugar2 = document.querySelector("#content>.list>.works .sugar2")
+				var sugar3 = document.querySelector("#content>.list>.works .sugar3");
+				sugar1.style.transform = "translateY(-800px)";
+				sugar2.style.transform = "translateY(-800px)";
+				sugar3.style.transform = "translateY(2000px)";
+			}
 		},
 		{
-			inAni:function(){},
-			outAni:function(){}
+			inAni:function(){
+				var item1 = document.querySelector("#content>.list .about .about3 .item:nth-child(1)");
+				var item2 = document.querySelector("#content>.list .about .about3 .item:nth-child(2)");
+				item1.style.transform = "rotate(0deg)";
+				item2.style.transform =" rotate(0deg)";
+
+			},
+			outAni:function(){
+				var item1 = document.querySelector("#content>.list .about .about3 .item:nth-child(1)");
+				var item2 = document.querySelector("#content>.list .about .about3 .item:nth-child(2)");
+				item1.style.transform = "rotate(15deg)";
+				item2.style.transform = "rotate(-15deg)";
+			}
 		},
 		{
-			inAni:function(){},
-			outAni:function(){}
+			inAni:function(){
+				var team1 = document.querySelector("#content>.list .team .team1");
+				var team2 = document.querySelector("#content>.list .team .team2");
+				team1.style.transform = "translateX(0px)";
+				team2.style.transform = "translateX(0px)";
+
+
+			},
+			outAni:function(){
+				var team1 = document.querySelector("#content>.list .team .team1");
+				var team2 = document.querySelector("#content>.list .team .team2");
+				team1.style.transform = "translateX(-200px)";
+				team2.style.transform = "translateX(200px)";
+			}
 		}
 	]
-	aniArr[1].outAni();
+	aniArr[4].outAni();
 	setTimeout(function(){
-		aniArr[1].inAni();
-	},2000)
+		aniArr[4].inAni();
+	},1000)
 
 
 	// 第五屏气泡效果
@@ -917,7 +964,7 @@
 				}
 			}
 		}
-		move(1)
+		move(4)
 
 	// 移动导航栏效果
 		function move(index){
