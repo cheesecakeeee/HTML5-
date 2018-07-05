@@ -494,108 +494,116 @@
 		var autoIndex = 0;
 		var timer3D = null;
 
+	// 上一屏的索引值
+		var prevIndex = 0;
+
 	// 出入场动画
-	var aniArr = [
-		{
-			inAni:function(){
-				var home1 = document.querySelector("#content>.list>.home .home1")
-				var home2 = document.querySelector("#content>.list>.home .home2");
-				home1.style.transform = "translateY(0px)";
-				home2.style.transform = "translateY(0px)";
-				home1.style.opacity = 1;
-				home2.style.opacity = 1;
+		var aniArr = [
+			{
+				inAni:function(){
+					var home1 = document.querySelector("#content>.list>.home .home1")
+					var home2 = document.querySelector("#content>.list>.home .home2");
+					home1.style.transform = "translateY(0px)";
+					home2.style.transform = "translateY(0px)";
+					home1.style.opacity = 1;
+					home2.style.opacity = 1;
+				},
+				outAni:function(){
+					var home1 = document.querySelector("#content>.list>.home .home1")
+					var home2 = document.querySelector("#content>.list>.home .home2")
+					home1.style.transform = "translateY(-800px)";
+					home2.style.transform = "translateY(800px)";
+					home1.style.opacity = 0;
+					home2.style.opacity = 0;
+				}
 			},
-			outAni:function(){
-				var home1 = document.querySelector("#content>.list>.home .home1")
-				var home2 = document.querySelector("#content>.list>.home .home2")
-				home1.style.transform = "translateY(-800px)";
-				home2.style.transform = "translateY(800px)";
-				home1.style.opacity = 0;
-				home2.style.opacity = 0;
-			}
-		},
-		{
-			inAni:function(){
-				var bf1 = document.querySelector("#content>.list>.course .bf1")
-				var bf2 = document.querySelector("#content>.list>.course .bf2")
-				var bf3 = document.querySelector("#content>.list>.course .bf3")
-				bf1.style.transform = "translate(0px,-30px)"
-				bf2.style.transform = "translate(50%,-30px)"
-				bf3.style.transform = "translate(0px,0px)"
-				bf1.style.opacity = 1;
-				bf2.style.opacity = 1;
-				bf3.style.opacity = 1;
-				
+			{
+				inAni:function(){
+					var bf1 = document.querySelector("#content>.list>.course .bf1")
+					var bf2 = document.querySelector("#content>.list>.course .bf2")
+					var bf3 = document.querySelector("#content>.list>.course .bf3")
+					bf1.style.transform = "translate(0px,-30px)"
+					bf2.style.transform = "translate(50%,-30px)"
+					bf3.style.transform = "translate(0px,0px)"
+					bf1.style.opacity = 1;
+					bf2.style.opacity = 1;
+					bf3.style.opacity = 1;
+					
+				},
+				outAni:function(){
+					var bf1 = document.querySelector("#content>.list>.course .bf1")
+					var bf2 = document.querySelector("#content>.list>.course .bf2")
+					var bf3 = document.querySelector("#content>.list>.course .bf3")
+					bf2.style.transform = "translate(-500px,-800px)"
+					bf1.style.transform = "translate(200px,300px)"
+					bf3.style.transform = "translate(200px,-800px)"
+					bf1.style.opacity = 0;
+					bf2.style.opacity = 0;
+					bf3.style.opacity = 0;
+				}
 			},
-			outAni:function(){
-				var bf1 = document.querySelector("#content>.list>.course .bf1")
-				var bf2 = document.querySelector("#content>.list>.course .bf2")
-				var bf3 = document.querySelector("#content>.list>.course .bf3")
-				bf2.style.transform = "translate(-500px,-800px)"
-				bf1.style.transform = "translate(200px,300px)"
-				bf3.style.transform = "translate(200px,-800px)"
-				bf1.style.opacity = 0;
-				bf2.style.opacity = 0;
-				bf3.style.opacity = 0;
-			}
-		},
-		{
-			inAni:function(){
-				var sugar1 = document.querySelector("#content>.list>.works .sugar1")
-				var sugar2 = document.querySelector("#content>.list>.works .sugar2")
-				var sugar3 = document.querySelector("#content>.list>.works .sugar3");
-				sugar1.style.transform = "translateY(0px)";
-				sugar2.style.transform = "translateY(100px)";
-				sugar3.style.transform = "translateY(0px)";
+			{
+				inAni:function(){
+					var sugar1 = document.querySelector("#content>.list>.works .sugar1")
+					var sugar2 = document.querySelector("#content>.list>.works .sugar2")
+					var sugar3 = document.querySelector("#content>.list>.works .sugar3");
+					sugar1.style.transform = "translateY(0px)";
+					sugar2.style.transform = "translateY(100px)";
+					sugar3.style.transform = "translateY(0px)";
 
+				},
+				outAni:function(){
+					var sugar1 = document.querySelector("#content>.list>.works .sugar1")
+					var sugar2 = document.querySelector("#content>.list>.works .sugar2")
+					var sugar3 = document.querySelector("#content>.list>.works .sugar3");
+					sugar1.style.transform = "translateY(-800px)";
+					sugar2.style.transform = "translateY(-800px)";
+					sugar3.style.transform = "translateY(2000px)";
+				}
 			},
-			outAni:function(){
-				var sugar1 = document.querySelector("#content>.list>.works .sugar1")
-				var sugar2 = document.querySelector("#content>.list>.works .sugar2")
-				var sugar3 = document.querySelector("#content>.list>.works .sugar3");
-				sugar1.style.transform = "translateY(-800px)";
-				sugar2.style.transform = "translateY(-800px)";
-				sugar3.style.transform = "translateY(2000px)";
-			}
-		},
-		{
-			inAni:function(){
-				var item1 = document.querySelector("#content>.list .about .about3 .item:nth-child(1)");
-				var item2 = document.querySelector("#content>.list .about .about3 .item:nth-child(2)");
-				item1.style.transform = "rotate(0deg)";
-				item2.style.transform =" rotate(0deg)";
+			{
+				inAni:function(){
+					var item1 = document.querySelector("#content>.list .about .about3 .item:nth-child(1)");
+					var item2 = document.querySelector("#content>.list .about .about3 .item:nth-child(2)");
+					item1.style.transform = "rotate(0deg)";
+					item2.style.transform =" rotate(0deg)";
 
+				},
+				outAni:function(){
+					var item1 = document.querySelector("#content>.list .about .about3 .item:nth-child(1)");
+					var item2 = document.querySelector("#content>.list .about .about3 .item:nth-child(2)");
+					item1.style.transform = "rotate(15deg)";
+					item2.style.transform = "rotate(-15deg)";
+				}
 			},
-			outAni:function(){
-				var item1 = document.querySelector("#content>.list .about .about3 .item:nth-child(1)");
-				var item2 = document.querySelector("#content>.list .about .about3 .item:nth-child(2)");
-				item1.style.transform = "rotate(15deg)";
-				item2.style.transform = "rotate(-15deg)";
-			}
-		},
-		{
-			inAni:function(){
-				var team1 = document.querySelector("#content>.list .team .team1");
-				var team2 = document.querySelector("#content>.list .team .team2");
-				team1.style.transform = "translateX(0px)";
-				team2.style.transform = "translateX(0px)";
+			{
+				inAni:function(){
+					var team1 = document.querySelector("#content>.list .team .team1");
+					var team2 = document.querySelector("#content>.list .team .team2");
+					team1.style.transform = "translateX(0px)";
+					team2.style.transform = "translateX(0px)";
 
 
-			},
-			outAni:function(){
-				var team1 = document.querySelector("#content>.list .team .team1");
-				var team2 = document.querySelector("#content>.list .team .team2");
-				team1.style.transform = "translateX(-200px)";
-				team2.style.transform = "translateX(200px)";
+				},
+				outAni:function(){
+					var team1 = document.querySelector("#content>.list .team .team1");
+					var team2 = document.querySelector("#content>.list .team .team2");
+					team1.style.transform = "translateX(-200px)";
+					team2.style.transform = "translateX(200px)";
+				}
 			}
+		]
+	// 每一屏都设置动画初始状态为出场状态，关联滚轮和点击导航栏切换出入场状态
+		for(var i=0;i<aniArr.length;i++){
+			aniArr[i]["outAni"]();
 		}
-	]
-	aniArr[4].outAni();
-	setTimeout(function(){
-		aniArr[4].inAni();
-	},1000)
+		// 第一屏默认入场
+		setTimeout(function(){
+			aniArr[0].inAni();
+		},1000)
 
 
+	
 	// 第五屏气泡效果
 		var team3 = document.querySelector("#content>.list .team .team3");
 		var team3Ul = document.querySelector("#content>.list .team .team3 ul");
@@ -921,7 +929,7 @@
 			if(ev.detail){
 				dir = ev.detail>0?"down":"up";
 			}
-
+			prevIndex = now;
 			switch(dir){
 				case "up":
 					if(now>0){
@@ -947,6 +955,8 @@
 			for(var i=0;i<liNodes.length;i++){
 				liNodes[i].index = i;
 				liNodes[i].onclick = function(){
+					// 当前值没有给改变前上一屏就是now
+					prevIndex = now;
 					// 点击导航栏，导航栏样式变化，小三角移动,内容区滚动也会触发
 					move(this.index);
 					// 将this.index的绑定到全局作用域下
@@ -957,6 +967,8 @@
 			for(var i=0;i<dotLis.length;i++){
 				dotLis[i].index = i;
 				dotLis[i].onclick = function(){
+					// 当前值没有给改变前上一屏就是now
+					prevIndex = now;
 					// 点击导航栏，导航栏样式变化，小三角移动,内容区滚动也会触发
 					move(this.index);
 					// 将this.index的绑定到全局作用域下
@@ -964,7 +976,6 @@
 				}
 			}
 		}
-		move(4)
 
 	// 移动导航栏效果
 		function move(index){
@@ -983,6 +994,14 @@
 				dotLis[i].className = "";
 			}
 			dotLis[index].className ="active";	//当前小圆点active
+
+			// 出入场动画,当前屏存在动画且当前屏的入场动画为函数类型即执行函数，设置prevIndex 
+			if(aniArr[index] && typeof aniArr[index]["inAni"] == "function"){
+				aniArr[index]["inAni"]();
+			}
+			if(aniArr[prevIndex] && typeof aniArr[prevIndex]["outAni"] == "function"){
+				aniArr[prevIndex]["outAni"]();
+			}
 		}
 		
 		
