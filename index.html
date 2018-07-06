@@ -206,7 +206,8 @@
 
 		/*出入场结束*/
 
-
+		/*音频*/
+		#head .headMain>.music{width: 14px;height: 14px;background: url(images/musicon.gif) no-repeat;float: left;margin: 50px 0 0 5px}
 
 		
 		/*小圆点开始*/
@@ -230,6 +231,9 @@
 						<img src="images/logo.png" alt="">
 					</a>
 				</h1>
+				<div class="music">
+					<audio src="images/secrectbase.mp3" autoplay="autoplay" ></audio>
+				</div>
 				<nav class="nav">
 					<ul class="list clearfix">
 						<li>
@@ -497,6 +501,18 @@
 	// 上一屏的索引值
 		var prevIndex = 0;
 
+	// 音频 
+	var music = document.querySelector("#head .headMain>.music");
+	var audio = document.querySelector("#head .headMain>.music>audio");
+	music.onclick = function(){
+		if(audio.paused){
+			audio.play();
+			music.style.background = "url(images/musicon.gif)"
+		}else{
+			audio.pause();	
+			music.style.background = "url(images/musicoff.jpg)"
+		}
+	}
 	// 出入场动画
 		var aniArr = [
 			{
