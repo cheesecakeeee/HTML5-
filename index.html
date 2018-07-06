@@ -7,6 +7,7 @@
 	<style>
 	/*css reset start*/
 		body,html{height: 100%;/*overflow: hidden;*/}
+		#wrap{height: 100%;}
 		body,html,h1,h2,h3,h4,h5,h6,ul,p,li{margin: 0;padding: 0;font-size: 14px;font-family: "微软雅黑"}
 		a{text-decoration: none;display: block;}
 		li{list-style: none;}
@@ -208,6 +209,12 @@
 
 		/*音频*/
 		#head .headMain>.music{width: 14px;height: 14px;background: url(images/musicon.gif) no-repeat;float: left;margin: 50px 0 0 5px}
+		
+		/*开机动画*/
+		#wrap>.mask{height: 100%;width: 100%;position: absolute;z-index: 100}
+		#wrap>.mask>.up{width: 100%;height: 50%;background-color: #859DF2;transition:1s height;}
+		#wrap>.mask>.down{width: 100%;height: 50%;background-color: #859DF2;transition:1s height;position: absolute;bottom: 0;}
+		#wrap>.mask>.line{height: 4px;width: 0%;background-color: #fff;position: absolute;top: 50%;left: 0;margin-top: -2px;transition:1s width;}
 
 		
 		/*小圆点开始*/
@@ -223,6 +230,13 @@
 <body>
 	<section id="wrap">
 		<!-- 外部流体布局 -->
+		<!-- 开机动画 -->
+		<div class="mask">
+			<div class="up"></div>
+			<div class="down"></div>
+			<span class="line"></span>
+		</div>
+		<!-- 头部 -->
 		<header id="head">
 			<!-- 内部固定布局 -->
 			<div class="headMain">
@@ -232,7 +246,7 @@
 					</a>
 				</h1>
 				<div class="music">
-					<audio src="images/secrectbase.mp3" autoplay="autoplay" ></audio>
+					<audio src="images/secrectbase.mp3" ></audio>
 				</div>
 				<nav class="nav">
 					<ul class="list clearfix">
@@ -271,6 +285,7 @@
 				<div class="arrow"></div>
 			</div>
 		</header>
+		<!-- 内容 -->
 		<section id="content">
 			<ul class="list">
 				<li class="home">
@@ -498,21 +513,71 @@
 		var autoIndex = 0;
 		var timer3D = null;
 
+		// 开机
+		var mask = document.querySelector("#wrap>.mask");
+		var sides = document.querySelectorAll("#wrap>.mask > div");
+		var line = document.querySelector("#wrap>.mask>.line");
+
+		// 音频、、
+		var music = document.querySelector("#head .headMain>.music");
+		var audioP = document.querySelector("#head .headMain>.music>audio");
+
 	// 上一屏的索引值
 		var prevIndex = 0;
+	// 开机动画
+		loadingAn();
+		function loadingAn(){
+			var arr = ["aboutimg1.jpeg","aboutimg2.jpeg","aboutimg11.jpeg","aboutimg22.png","aboutline.png","arrow.jpg","bf1.png","bf2.png","bf3.png","bg.jpg","home.png","home_up.png","icon1.png","img.png","line.png","logo.png","musicoff.jpg","musicon.gif","secrectbase.mp3","sugar.png","sugar1.png","sugar3.png","team3.png","works3.png","worksimg1.jpeg","worksimg2.jpeg","worksimg3.jpeg","worksimg4.jpeg"]
+
+
+			var flag = 1;
+			for(var i=0;i<arr.length;i++){
+				var img = new Image();
+				img.src = "images/"+arr[i];
+				img.onload = function(){
+					flag++;
+
+					line.style.width = flag/arr.length*100+"%";
+					console.log(flag)
+
+					
+				}
+
+ 			}
+
+ 			line.addEventListener("transitionend",function(){
+ 				if(flag === arr.length){
+					for(var i=0;i<sides.length;i++){
+						sides[i].style.height = 0
+					}
+					this.style.display = "none";
+
+
+				}
+			})
+
+			sides[0].addEventListener("transitionend",function(){
+				mask.remove();
+				home3D();
+			})
+
+
+		}
+		
+
 
 	// 音频 
-	var music = document.querySelector("#head .headMain>.music");
-	var audio = document.querySelector("#head .headMain>.music>audio");
-	music.onclick = function(){
-		if(audio.paused){
-			audio.play();
-			music.style.background = "url(images/musicon.gif)"
-		}else{
-			audio.pause();	
-			music.style.background = "url(images/musicoff.jpg)"
+
+		music.onclick = function(){
+			if(audioP.paused){
+				audioP.play();
+				music.style.background = "url(images/musicon.gif)"
+			}else{
+				audioP.pause();	
+				music.style.background = "url(images/musicoff.jpg)"
+			}
 		}
-	}
+
 	// 出入场动画
 		var aniArr = [
 			{
@@ -609,6 +674,7 @@
 				}
 			}
 		]
+
 	// 每一屏都设置动画初始状态为出场状态，关联滚轮和点击导航栏切换出入场状态
 		for(var i=0;i<aniArr.length;i++){
 			aniArr[i]["outAni"]();
@@ -617,7 +683,6 @@
 		setTimeout(function(){
 			aniArr[0].inAni();
 		},1000)
-
 
 	
 	// 第五屏气泡效果
@@ -654,7 +719,7 @@
 					// oc.style.background = "#DE9090"	;
 					team3.appendChild(oc);
 					// 移出鼠标的样式都是绑定在canvas上的,canvas和li在一起
-					oc.onmouseleave = function(){
+					team3.onmouseleave = function(){
 						for(var i=0;i<team3Lis.length;i++){
 							team3Lis[i].style.opacity = 1
 						}
@@ -799,7 +864,6 @@
 
 
 	// 第一屏的3D效果
-		home3D();
 		function home3D(){
 			// 手动轮播时停止之前的自动轮播，从当前轮播索引值所指的位置开始轮播,
 			// 记得将当前的索引值赋值给自动轮播的索引，才能按当前位置开始轮播
